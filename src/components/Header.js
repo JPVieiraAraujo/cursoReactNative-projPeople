@@ -1,11 +1,27 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 //Stateless | Functional
-const Header = (props) => (
-    <View>
-        <Text>Este é o nosso Header</Text>
+const Header = props => (
+    <View style={style.container}>
+        <Text style={style.title}>{ props.title }</Text>
     </View>
 );
+
+/* StyleSheet */ //StyleSheet.create: componente da biblioteca, auxilia na produção, como erros.
+const style = StyleSheet.create({
+    container: {
+        marginTop: 25,
+        backgroundColor: '#6fc787',
+
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    title: {
+        fontSize: 50,
+        color: '#dbd8e8',
+    }
+});
 
 export default Header;
