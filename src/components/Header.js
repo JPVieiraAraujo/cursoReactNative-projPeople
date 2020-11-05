@@ -12,7 +12,7 @@ const Header = props => (
 const style = StyleSheet.create({
     container: {
         marginTop: 25,
-        backgroundColor: '#6fc787',
+        backgroundColor: '#3cb53c',
 
         alignItems: 'center',
         justifyContent: 'center',
@@ -20,7 +20,7 @@ const style = StyleSheet.create({
 
     title: {
         fontSize: 50,
-        color: '#dbd8e8',
+        color: '#fafcfa',
     }
 });
 
