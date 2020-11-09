@@ -52,7 +52,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View>
-        <Header title="Pessoas" />
+        <Header title="Pessoas!!" />
         <PeopleList peoples={this.state.peoples} />
       </View>
     );
