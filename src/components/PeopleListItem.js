@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import { capitalizeFirstLetter } from '../util';
 
@@ -11,14 +11,16 @@ const PeopleListItem = props => {
     return (
         //`` é utilizado pelo JSX para transformar em string, exceto que ta dentro do ${}
             //codigo javaScript ou variaveis, na qual pode-se concatena-la.
-        <View style={styles.line}>
+        <TouchableOpacity onPress={() => console.log('Clicou aqui...', first)}>
+            <View style={styles.line}>
 
-            <Image style={styles.avatar} source={{ uri: people.picture.thumbnail }} />
+                <Image style={styles.avatar} source={{ uri: people.picture.thumbnail }} />
 
-            <Text style={styles.lineText}>
+                <Text style={styles.lineText}>
                 { `${capitalizeFirstLetter(title)} ${capitalizeFirstLetter(first)} ${capitalizeFirstLetter(last)}` }
-            </Text>
-        </View>
+                </Text>
+            </View>
+        </TouchableOpacity>
     );
 }
 
