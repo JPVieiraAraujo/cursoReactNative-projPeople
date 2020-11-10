@@ -13,7 +13,7 @@ const PeopleListItem = props => {
             //codigo javaScript ou variaveis, na qual pode-se concatena-la.
         <TouchableOpacity onPress={() => {
             console.log('Clicou aqui...', first);
-            navigateToPeopleDetail();
+            navigateToPeopleDetail({ people });
         }}>
             <View style={styles.line}>
 

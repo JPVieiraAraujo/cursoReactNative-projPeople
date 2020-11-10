@@ -5,20 +5,34 @@ import { createStackNavigator } from 'react-navigation-stack';
 import PeoplePage from './src/pages/PeoplePage';
 import PeopleDetailPage from './src/pages/PeopleDetailPage';
 
+import { capitalizeFirstLetter } from './src/util';
+
 const AppNavigation = createStackNavigator ({
   'Main': {
     screen: PeoplePage
   },
   'PeopleDetail': {
-    screen: PeopleDetailPage
+    screen: PeopleDetailPage,
+    navigationOptions: ({ navigation }) => {
+      const peopleName = capitalizeFirstLetter(navigation.state.params.people.name.first);
+      return ({
+        title: peopleName,
+        headerTitleStyle: {
+          color: 'white',
+          fontSize: 30,
+        }
+
+      });
+    }
   }
 }, { 
   defaultNavigationOptions: {
     title: 'Pessoas!',
+    headerTintColor: 'white',
     headerStyle: {
       backgroundColor: '#3cb53c',
       borderBottomWidth: 1,
-      borderBottomCollor: '#c5c5c5'
+      borderBottomCollor: '#a4bfb1'
     },
     headerTitleStyle: {
       color: 'white',
