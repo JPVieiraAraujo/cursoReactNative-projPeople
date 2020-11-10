@@ -10,7 +10,11 @@ const Line = ({ label = "", content = "-" }) => {
                 //aplicando operação Ternário onde: (se label > 8 então longLabel senão, faça nada )
                 label.length > 8 ? styles.longLabel : null
             ]}>{ label }</Text>
-            <Text style={[styles.cell, styles.content]}>{ content }</Text>
+            <Text style={[
+                styles.cell,
+                styles.content,
+                content.length > 20 ? styles.longContent : null
+            ]}>{ content }</Text>
         </View>
     )
 }
@@ -36,9 +40,11 @@ const styles = StyleSheet.create({
     },
     longLabel: {
         fontSize: 11
+    },
+    longContent: {
+        fontSize: 15
     }
-
-
+    
 });
 
 export default Line;
