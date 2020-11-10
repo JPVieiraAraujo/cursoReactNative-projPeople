@@ -4,15 +4,14 @@ import { View, Text, StyleSheet } from 'react-native';
 import PeopleListItem from './PeopleListItem';
 
 const PeopleList = props => {
-    const {peoples} = props;
+    const { peoples, onPressItem } = props;
 
-    const items = peoples.map(people => {
-        return (
+    const items = peoples.map(people =>
             <PeopleListItem 
                 key={people.name.first} 
-                people={people} />
-        )
-    });
+                people={people}
+                navigateToPeopleDetail={onPressItem} />
+    );
     
     return (   
         //renderizando a variavel, basta coloca-la entre chaves; 

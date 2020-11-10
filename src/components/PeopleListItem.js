@@ -5,13 +5,16 @@ import { capitalizeFirstLetter } from '../util';
 
 const PeopleListItem = props => {
 
-    const {people} = props;
+    const {people, navigateToPeopleDetail } = props;
     const { title, first, last} = people.name;
 
     return (
         //`` é utilizado pelo JSX para transformar em string, exceto que ta dentro do ${}
             //codigo javaScript ou variaveis, na qual pode-se concatena-la.
-        <TouchableOpacity onPress={() => console.log('Clicou aqui...', first)}>
+        <TouchableOpacity onPress={() => {
+            console.log('Clicou aqui...', first);
+            navigateToPeopleDetail();
+        }}>
             <View style={styles.line}>
 
                 <Image style={styles.avatar} source={{ uri: people.picture.thumbnail }} />
