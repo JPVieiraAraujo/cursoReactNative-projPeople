@@ -1,6 +1,6 @@
 //import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 
 import PeopleList from '../components/PeopleList';
 
@@ -28,7 +28,13 @@ export default class PeoplePage extends React.Component {
           this.setState({
             peoples: results,
             loading: false,
+            error: false,
           });
+        }).catch(error => {
+            this.setState({
+              loading: false,
+              error: true
+            })
         });
     }, 1500);
     
@@ -54,12 +60,22 @@ export default class PeoplePage extends React.Component {
     return textElements;
   }*/
 
-//outra forma de fazer o condicional do Loading
-  /*renderLoading() {
+//outra forma de fazer o condicional do Loading e Error
+  /*renderPage() {
     if (this.state.loading) {
       return <ActivityIndicator size="large" color="#3cb53c" />
     }
-    return null;
+
+    if (this.state.error) {
+      return <Text style={styles.error}>Ops.. Deu ruim...</Text>
+    }
+    return (
+      <PeopleList 
+        peoples={this.state.peoples}
+        onPressItem={pageParams => {
+         this.props.navigation.navigate('PeopleDetail', pageParams);
+          }} />
+    );
   }*/
 
   render() {
@@ -67,15 +83,17 @@ export default class PeoplePage extends React.Component {
     //this.props.navigation.navigate('PeopleDetail');
     return (
       <View style={styles.container}>
-        {/* this.renderLoading() */}
+        {/* this.renderPage() */}
         {
           this.state.loading
             ? <ActivityIndicator size="large" color="#3cb53c" />
-            : <PeopleList 
-                peoples={this.state.peoples}
-                onPressItem={pageParams => {
-                  this.props.navigation.navigate('PeopleDetail', pageParams);
-                }} />
+            : this.state.error
+                ? <Text style={styles.error}>Ops.. Deu ruim...</Text>
+                : <PeopleList 
+                    peoples={this.state.peoples}
+                    onPressItem={pageParams => {
+                      this.props.navigation.navigate('PeopleDetail', pageParams);
+                    }} />
         }
         
       </View>
@@ -87,5 +105,10 @@ const styles = StyleSheet.create ({
   container: {
     flex: 1,
     justifyContent: 'center',
+  },
+  error: {
+    color: 'red',
+    alignSelf: 'center',
+    fontSize: 18,
   }
 });
